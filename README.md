@@ -40,7 +40,7 @@ Least Wins:
 ```
 
 ### 2. Team with Most and Least Trophies (Final Match Winners)
-```
+```python 
 # Get final match of each season
 window_spec = Window.partitionBy("season").orderBy(col("date").desc())
 final_matches = matches.withColumn("row_num", row_number().over(window_spec)) \
@@ -62,7 +62,7 @@ Least Trophies (1 each):
 ```
 
 ### 3. Top Wicket-Takers
-```
+```python 
 top_wicket_takers = deliveries.filter(col("is_wicket") == True) \
     .filter(col("dismissal_kind").isNotNull()) \
     .groupBy("bowler") \
@@ -75,7 +75,7 @@ top_wicket_takers = deliveries.filter(col("is_wicket") == True) \
 ```
 
 ### 4. Economy Rate of Bowlers
-```
+```python 
 economy_rate = deliveries.groupBy("bowler") \
     .agg(
         sum("total_runs").alias("runs_conceded"),
@@ -90,7 +90,7 @@ economy_rate = deliveries.groupBy("bowler") \
 ```
 
 ### 5. Strike Rate of Batsmen
-```
+```python 
 batsman_strike_rate = deliveries.groupBy("batter") \
     .agg(
         sum("batsman_runs").alias("total_runs"),
@@ -105,7 +105,7 @@ Results:
 ```
 
 ### 6. Best Batting Partnerships
-```
+```python 
 partnerships = deliveries.withColumn("pair", concat_ws(" & ", "batter", "non_striker")) \
     .groupBy("match_id", "pair") \
     .agg(sum("batsman_runs").alias("runs")) \
