@@ -117,5 +117,5 @@ Results:
 
 ### Notes
 This project focuses on statistical and historical insights; no machine learning is involved.
-The notebook is optimized for PySpark on local mode.
+The notebook is optimized for PySpark on local mode..
 All calculations assume the latest match by date is the final for each season.
